@@ -10,6 +10,21 @@
 
 ## 一、获取米游社 Cookie
 
+### 方法 A：小工具自动读取（推荐，省去开发者工具）
+
+前提：在浏览器里登录了 mihoyo.com。
+
+```bash
+pip install browser_cookie3
+python get_cookie.py
+```
+
+脚本会从浏览器直接读出整段 Cookie 并打印，复制粘贴到 GitHub 的 `COOKIE` Secret 即可。
+
+> Edge/Chrome 新版对 Cookie 做了加密，需用 **管理员身份** 打开 PowerShell 再运行；读取不到就改用下面的手动法。
+
+### 方法 B：开发者工具手动抓（兜底）
+
 1. 电脑浏览器打开并登录 <https://user.mihoyo.com/>（或米游社 <https://bbs.mihoyo.com/>）。
 2. 打开签到页 <https://act.mihoyo.com/bbs/event/signin/hk4e/index.html?bbs_auth_required=true&act_id=e202311201442471>。
 3. 按 `F12` 打开开发者工具 → `Network`（网络）面板，**勾选「禁用缓存」**，刷新页面，并点 `Fetch/XHR` 只看接口。
