@@ -11,8 +11,8 @@
 ## 一、获取米游社 Cookie
 
 1. 电脑浏览器打开并登录 <https://user.mihoyo.com/>（或米游社 <https://bbs.mihoyo.com/>）。
-2. 打开签到页 <https://webstatic.mihoyo.com/bbs/event/signin-ys/index.html?bbs_auth_required=true&act_id=e202009291139501>。
-3. 按 `F12` 打开开发者工具 → `Network`（网络）面板，刷新页面。
+2. 打开签到页 <https://act.mihoyo.com/bbs/event/signin/hk4e/index.html?bbs_auth_required=true&act_id=e202311201442471>。
+3. 按 `F12` 打开开发者工具 → `Network`（网络）面板，**勾选「禁用缓存」**，刷新页面，并点 `Fetch/XHR` 只看接口。
 4. 随便点一个发往 `api-takumi.mihoyo.com` 的请求 → `Headers` → 找到请求头里的 `Cookie`，**整段复制**。
    - 必须包含 `cookie_token`/`account_id` 或 `ltoken`/`ltuid`/`stoken` 等字段。
 5. 多个账号：把每个账号的 Cookie 用 `#` 连接成一行，例如 `cookieA#cookieB`。

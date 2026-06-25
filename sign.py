@@ -18,17 +18,19 @@ import hashlib
 import requests
 
 # ============ 配置（接口/版本会变，失效时改这里）============
-ACT_ID = "e202009291139501"  # 国服原神签到活动 ID
+# 国服原神现用 luna 新接口（/event/luna/...），act_id 见签到页 URL
+ACT_ID = "e202311201442471"  # 国服原神签到活动 ID
+LANG = "zh-cn"
 APP_VERSION = "2.71.1"       # 米游社 App 版本号，DS 校验需要时随官方更新
 DS_SALT = "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs"  # web 端 DS salt（如失效需更新）
 
 ROLE_URL = "https://api-takumi.mihoyo.com/binding/api/getUserGameRolesByCookie?game_biz=hk4e_cn"
-INFO_URL = "https://api-takumi.mihoyo.com/event/bbs_sign_reward/info"
-HOME_URL = "https://api-takumi.mihoyo.com/event/bbs_sign_reward/home"
-SIGN_URL = "https://api-takumi.mihoyo.com/event/bbs_sign_reward/sign"
+INFO_URL = "https://api-takumi.mihoyo.com/event/luna/info"
+HOME_URL = "https://api-takumi.mihoyo.com/event/luna/home"
+SIGN_URL = "https://api-takumi.mihoyo.com/event/luna/sign"
 
-REFERER = ("https://webstatic.mihoyo.com/bbs/event/signin-ys/index.html"
-           "?bbs_auth_required=true&act_id=" + ACT_ID + "&utm_source=bbs&utm_medium=mys&utm_campaign=icon")
+REFERER = ("https://act.mihoyo.com/bbs/event/signin/hk4e/index.html"
+           "?bbs_auth_required=true&act_id=" + ACT_ID)
 
 
 def get_ds() -> str:
@@ -51,7 +53,7 @@ def build_headers(cookie: str) -> dict:
         "User-Agent": (f"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) "
                        f"AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/{APP_VERSION}"),
         "Referer": REFERER,
-        "Origin": "https://webstatic.mihoyo.com",
+        "Origin": "https://act.mihoyo.com",
         "Accept": "application/json, text/plain, */*",
     }
 
@@ -80,7 +82,7 @@ def sign_one_role(cookie: str, role: dict) -> str:
 
     # 已签天数信息
     info = requests.get(
-        INFO_URL, params={"act_id": ACT_ID, "region": region, "uid": uid},
+        INFO_URL, params={"lang": LANG, "act_id": ACT_ID, "region": region, "uid": uid},
         headers=headers, timeout=20,
     ).json()
     if info.get("retcode") != 0:
@@ -93,7 +95,7 @@ def sign_one_role(cookie: str, role: dict) -> str:
     # 执行签到
     resp = requests.post(
         SIGN_URL,
-        json={"act_id": ACT_ID, "region": region, "uid": uid},
+        json={"act_id": ACT_ID, "region": region, "uid": uid, "lang": LANG},
         headers=headers, timeout=20,
     ).json()
     retcode = resp.get("retcode")
