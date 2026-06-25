@@ -28,7 +28,7 @@ DS_SALT = "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs"  # web 端 DS salt（如失效需�
 GAMES = [
     {"name": "原神",   "biz": "hk4e_cn",  "act_id": "e202311201442471", "signgame": "hk4e"},
     {"name": "星铁",   "biz": "hkrpg_cn", "act_id": "e202304121516551", "signgame": "hkrpg"},
-    {"name": "绝区零", "biz": "nap_cn",   "act_id": "e202406242138391", "signgame": "nap"},
+    {"name": "绝区零", "biz": "nap_cn",   "act_id": "e202406242138391", "signgame": "zzz"},
 ]
 
 ROLE_URL = "https://api-takumi.mihoyo.com/binding/api/getUserGameRolesByCookie"
