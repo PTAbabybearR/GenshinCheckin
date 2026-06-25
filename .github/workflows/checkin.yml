@@ -1,0 +1,27 @@
+name: Genshin Daily Check-in
+
+on:
+  schedule:
+    # UTC 时间 0:30 = 北京时间 8:30。cron 不保证精准，可能延迟几分钟到几十分钟。
+    - cron: "30 0 * * *"
+  workflow_dispatch: {}        # 允许在 Actions 页面手动触发，方便测试
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run check-in
+        env:
+          COOKIE: ${{ secrets.COOKIE }}
+          SCT_KEY: ${{ secrets.SCT_KEY }}
+        run: python sign.py
