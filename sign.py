@@ -48,6 +48,7 @@ def build_headers(cookie: str) -> dict:
         "x-rpc-app_version": APP_VERSION,
         "x-rpc-client_type": "5",
         "x-rpc-platform": "4",
+        "x-rpc-signgame": "hk4e",  # luna 接口靠它区分游戏，原神=hk4e，缺了报 -500001
         "x-rpc-channel": "appstore",
         "x-rpc-device_id": "".join(random.choices(string.hexdigits.lower(), k=32)),
         "User-Agent": (f"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) "
