@@ -1,4 +1,4 @@
-# 原神 国服自动签到
+# MihoyoDailyCheckin · 米哈游国服每日签到
 
 米游社（国服）原神每日签到，跑在 **GitHub Actions** 上定时执行，结果通过 **Server酱** 推送到微信。
 

@@ -1,4 +1,4 @@
-name: Genshin Daily Check-in
+name: Mihoyo Daily Check-in
 
 on:
   schedule:
